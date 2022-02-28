@@ -3,11 +3,8 @@ import React from "react";
 function Navbar() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a className="navbar-brand" href="#/">
-            Navbar
-          </a>
+      <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container">
           <button
             className="navbar-toggler"
             type="button"
@@ -28,58 +25,29 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#/">
-                  Link
+                  About
                 </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#/"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a href="/" className="dropdown-item">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" className="dropdown-item">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a href="/" className="dropdown-item">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
               </li>
               <li className="nav-item">
-                <a href="/" className="nav-link disabled">
-                  Disabled
+                <a className="nav-link" href="#/">
+                  Services
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#/">
+                  Contact
                 </a>
               </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+            <a className="navbar-brand fw-bolder fs-4 mx-auto " href="#/">
+              Navbar
+            </a>
+            <button className="btn btn-outline-primary ms-auto px-4 rounded-pill ">
+              <i className="fa fa-sign-in me-2"></i> Login
+            </button>
+            <button className="btn btn-outline-primary ms-2 px-4 rounded-pill ">
+              <i className="fa fa-user-plus me-2"></i>Register
+            </button>
           </div>
         </div>
       </nav>
