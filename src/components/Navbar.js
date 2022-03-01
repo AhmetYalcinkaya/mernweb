@@ -55,6 +55,12 @@ function Navbar() {
             >
               <i className="fa fa-user-plus me-2"></i>Register
             </Link>
+            <Link
+              to="/dashboard"
+              className="btn btn-outline-primary ms-2 px-4 rounded-pill "
+            >
+              <i className="fa fa-user-plus me-2"></i>Dashboard
+            </Link>
           </div>
         </div>
       </nav>
