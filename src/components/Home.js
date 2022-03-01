@@ -1,4 +1,8 @@
 import React from "react";
+import About from "./About";
+import Contact from "./Contact";
+import Service from "./Service";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -17,17 +21,26 @@ function Home() {
                 of type and scrambled it to make a type specimen book.
               </p>
               <div className="buttons ">
-                <button className="btn btn-light me-4 rounded-pill px-4 py-2">
+                <Link
+                  className="btn btn-light me-4 rounded-pill px-4 py-2"
+                  to="/contact"
+                >
                   Get Quote
-                </button>
-                <button className="btn btn-outline-light rounded-pill px-4 py-2">
+                </Link>
+                <Link
+                  className="btn btn-outline-light rounded-pill px-4 py-2"
+                  to="/service"
+                >
                   Our Services
-                </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <About />
+      <Service />
+      <Contact />
     </div>
   );
 }
