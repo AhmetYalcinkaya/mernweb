@@ -78,7 +78,7 @@ function Footer() {
                   <h5>Subscribe to our newsletter</h5>
                   <p>Monthly digest of whats new and exciting from us.</p>
                   <div className="d-flex w-100 gap-2">
-                    <label for="newsletter1" className="visually-hidden">
+                    <label htmlFor="newsletter1" className="visually-hidden">
                       Email address
                     </label>
                     <input

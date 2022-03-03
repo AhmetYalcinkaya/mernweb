@@ -1,7 +1,46 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = user;
+    try {
+      const res = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (res.status === 400 || !res) {
+        window.alert("Invalid User ");
+      } else {
+        window.alert("Login Succesfull");
+        window.location.reload();
+        //Token is generated when we logged in
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="container shadow my-5">
@@ -19,7 +58,7 @@ const Login = () => {
           </div>
           <div className="col-md-6 p-5">
             <h1 className="display-6 fw-bolder mb-5">LOGIN</h1>
-            <form>
+            <form onSubmit={handleSubmit} method="POSt">
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address
@@ -28,6 +67,9 @@ const Login = () => {
                   type="email"
                   className="form-control"
                   id="exampleInputEmail1"
+                  name="email"
+                  value={user.email}
+                  onChange={handleChange}
                   aria-describedby="emailHelp"
                 />
                 <div id="emailHelp" className="form-text">
@@ -42,6 +84,9 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   id="exampleInputPassword1"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-3 form-check">
