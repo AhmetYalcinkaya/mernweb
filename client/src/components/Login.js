@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const history = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -34,6 +35,7 @@ const Login = () => {
       } else {
         window.alert("Login Succesfull");
         window.location.reload();
+        history.push("/");
         //Token is generated when we logged in
       }
     } catch (error) {

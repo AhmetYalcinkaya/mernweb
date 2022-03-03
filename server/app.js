@@ -11,6 +11,8 @@ require("./db/conn");
 
 //require model
 const Users = require("./models/userSchema");
+const Message = require("./models/msgSchema");
+const authenticate = require("./middleware/authentication");
 
 const app = express();
 
@@ -74,6 +76,37 @@ app.post("/login", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+//message
+
+app.post("/message", async (req, res) => {
+  try {
+    const name = req.body.name;
+    const email = req.body.email;
+    const message = req.body.message;
+
+    const sendMessage = new Message({
+      name: name,
+      email: email,
+      message: message,
+    });
+
+    const created = await sendMessage.save();
+    console.log(created);
+    res.status(200).send("Sent");
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+//logout
+app.get("/logout", (req, res) => {
+  res.clearCookie("jwt", { path: "/" });
+  res.status(200).send("User Logged Out");
+});
+
+//Authentication
+app.get("auth", authenticate, (req, res) => {});
 
 //Run Server
 app.listen(port, () => {

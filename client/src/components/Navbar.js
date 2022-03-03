@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light shadow">
@@ -43,24 +43,37 @@ function Navbar() {
             <Link className="navbar-brand fw-bolder fs-4 mx-auto " to="/">
               FINE ART
             </Link>
-            <Link
-              to="/login"
-              className="btn btn-outline-primary ms-auto px-4 rounded-pill "
-            >
-              <i className="fa fa-sign-in me-2"></i> Login
-            </Link>
-            <Link
-              to="/register"
-              className="btn btn-outline-primary ms-2 px-4 rounded-pill "
-            >
-              <i className="fa fa-user-plus me-2"></i>Register
-            </Link>
-            <Link
-              to="/dashboard"
-              className="btn btn-outline-primary ms-2 px-4 rounded-pill "
-            >
-              <i className="fa fa-user-plus me-2"></i>Dashboard
-            </Link>
+            {props.auth ? (
+              <>
+                <Link
+                  to="/login"
+                  className="btn btn-outline-primary ms-auto px-4 rounded-pill "
+                >
+                  <i className="fa fa-sign-in me-2"></i> Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="btn btn-outline-primary ms-2 px-4 rounded-pill "
+                >
+                  <i className="fa fa-user-plus me-2"></i>Register
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="btn btn-outline-primary ms-2 px-4 rounded-pill "
+                >
+                  <i className="fa fa-user-plus me-2"></i>Dashboard
+                </Link>
+                <Link
+                  to="/logout"
+                  className="btn btn-outline-primary ms-2 px-4 rounded-pill "
+                >
+                  <i className="fa fa-sign-out me-2"></i>Logout
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>

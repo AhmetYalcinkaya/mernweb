@@ -1,6 +1,50 @@
-import React from "react";
+import { useState } from "react";
 
 function Contact() {
+  const [msg, setMsg] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setMsg({ ...msg, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, message } = msg;
+    try {
+      const res = await fetch("/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      if (res.status === 400 || !res) {
+        window.alert("Message Not Sent ");
+      } else {
+        window.alert("Message  Sent");
+        setMsg({
+          name: "",
+          email: "",
+          message: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <section id="contact">
@@ -23,7 +67,7 @@ function Contact() {
               />
             </div>
             <div className="col-md-6">
-              <form action="">
+              <form onSubmit={handleSubmit} method="POSt">
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     Your Name
@@ -33,6 +77,9 @@ function Contact() {
                     className="form-control"
                     id="name"
                     placeholder="John Du"
+                    name="name"
+                    value={msg.name}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -44,6 +91,9 @@ function Contact() {
                     className="form-control"
                     id="email"
                     placeholder="name@example.com"
+                    name="email"
+                    value={msg.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -54,6 +104,9 @@ function Contact() {
                     className="form-control"
                     id="message"
                     rows="5"
+                    name="message"
+                    value={msg.message}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
                 <button
